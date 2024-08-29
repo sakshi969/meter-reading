@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SAIL SMR</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+    <style>
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f1f1;
+}
+
+.header {
+    display: flex;
+    margin: 0;
+    height: auto;
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.logoimg {
+    margin: 10px;
+    height: 60px;
+}
+
+.center-logo {
+    display: flex;
+    margin-inline: auto;
+}
+
+.meterlogo {
+    height: 40px;
+    margin: auto;
+}
+
+.head-text {
+    padding: 10px;
+    margin: auto;
+    font-family: system-ui;
+    font-size: x-large;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px black;
+}
+
+.headrtext {
+    margin: auto;
+    margin-right: 0;
+    margin-left: 0;
+    color: white;
+    padding: 10px;
+}
+
+.headrtext a {
+    padding: 10px;
+    font-family: monospace;
+    color: white;
+    text-decoration: none;
+}
+
+
+.dashboard-card {
+    display: flex;
+    height: 70vh;
+    margin: 6%;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 1px #3636394f;
+    font-family: sans-serif;
+    position: relative;
+}
+
+.card-left {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    padding: 10px;
+    padding-top: 15px;
+    background-color: #3384cf;
+    border-radius: 20px 0px 0px 20px;
+    border-right: 1px solid grey;
+}
+
+.card-left a {
+    padding: 15px;
+    color: floralwhite;
+    border-bottom: 1px solid white;
+    text-align: center;
+    text-shadow: 1px 1px black;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card-left a:hover {
+    color: black;
+    text-shadow: none;
+}
+
+
+.right-card {
+    display: flex;
+    transition: width 0.6s ease;
+    height: 100%;
+    width: 0;
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 25%;
+    background-color: white;
+}
+
+
+.no1 {
+    width: 75%;
+}
+
+.no2 {
+    background-color: red;
+}
+
+.no3 {
+    background-color: greenyellow;
+}
+
+.no4 {
+    background-color: blue;
+}
+
+.no5 {
+    background-color: orange;
+}
+
+
+.profimgsec {
+    display: flex;
+    height: 100%;
+    width: 40%;
+    border-right: 2px solid #b0a0a0;
+}
+
+.detailssec {
+    height: 100%;
+    width: 60%;
+    border-radius: 0 20px 20px 0;
+    padding: 20px;
+    letter-spacing: 1px;
+}
+
+.detailssec h5 {
+    margin: 10px;
+    color: #736b6b;
+}
+
+.detailssec a {
+    font-size: 12px;
+    color: #3b3bfddb;
+}
+
+.profimg {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.profimg img {
+    border-radius: inherit;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+.profimg h3 {
+    text-align: center;
+    margin: 10px;
+}
+    </style>
+<body>
+  
+   <div class="header">
+        <img class="logoimg" src="img/logo/saillogo1.1.png" alt="SAIL Logo">
+        <div class="center-logo">
+            <img class="meterlogo" src="img/logo/electric-meter%20(1).png" alt="Meter Logo">
+            <a class="head-text">Self Meter Reading</a>
+        </div>
+        <div class="headrtext">
+            <a href="#">Faq</a>
+            <a href="#">Help</a>
+        </div>
+    </div>
+    
+  
+    <div class="dashboard-card">
+        <div class="card-left">
+            <a href="#" id="btn1">Customer Information</a>
+            <a href="#" id="btn2">Bill Information</a>
+            <a href="#" id="btn3">Payment Records</a>
+            <a href="#" id="btn4">Billing History</a>
+            <a href="#" id="btn5">Additional Information</a>
+        </div>
+        <div id="card1" class="right-card">
+            <div class="profimgsec">
+                <div class="profimg">
+                    <img src="img/logo/profile.png" alt="Profile Image">
+                    <h3>Nisha Rani</h3>
+                </div>
+            </div>
+            <div class="detailssec">
+                <h5>Age: <a>22</a></h5>
+                <h5>Gender: <a>Female</a></h5>
+                <h5>Address: <a>Sec 12/D, Bokaro Steel City, Jharkhand</a></h5>
+                <h5>Type: <a>Sail</a></h5>
+                <h5>No of meters: <a>1</a></h5>
+                <h5>Meter Id: <a>2320498</a></h5>
+                <h5>Meter Type: <a>Digital</a></h5>
+                <h5>Meter Use: <a>Commercial</a></h5>
+            </div> 
+        </div>
+        
+        <div id="card2" class="right-card">
+           
+        </div>
+        
+        <div id="card3" class="right-card">
+            <h1>Payment Records</h1>
+            <p>This page contains payment records.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payment Date</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-01-01</td>
+                        <td>$100</td>
+                        <td>Credit Card</td>
+                        <td>Paid</td>
+                    </tr>
+                    <tr>
+                        <td>2024-02-01</td>
+                        <td>$100</td>
+                        <td>Bank Transfer</td>
+                        <td>Paid</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="card4" class="right-card">
+           
+        </div>
+        
+        <div id="card5" class="right-card">
+           
+        </div>
+    </div>
+    
+    <script src="script.js" async defer></script>
+</body>
+</html>

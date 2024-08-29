@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SAIL SMR</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+       <!-- header start -->
+       <div class="header">
+        <img class="logoimg" src="/static/img/logo/saillogo1.1.png">
+           <div class="center-logo">
+               <img class="meterlogo" src="/static/img/logo/electric-meter%20(3).png">
+           <a class="head-text">Self Meter Reading</a>
+           </div>
+        <div class="headrtext">
+           <a>Faq</a>
+            <a>Help</a>
+           </div>
+        </div>
+        <!-- header end -->
+        <div class="login-box">
+            <div class="formcont">
+        <form Method="post" >
+           {% csrf_token %} 
+            <div class="formsec">
+            <label>USERNAME</label>
+            <input type="text" name="uname" value="{{n1}}" placeholder="Meter id">
+            </div>
+            
+             <div class="formsec">
+             <label>Password:</label>
+            <input type="password" name="pass" value="{{output}}"
+             placeholder="Password">
+            </div>
+          
+             <div class="formsec">
+            <input class="subtn" type="submit" value="Login">
+            {% if error %}
+            <div class="alerterr">
+                <a>Please enter the values</a>
+            </div>{% endif %}
+            {% if error1 %}
+            <div class="alerterr">
+                <a>Username OR pass not match</a>
+            </div>{% endif %}
+            </div>
+            <div class="formfoot">
+                <a href="#">forgot password</a>
+            </div>
+            
+            </form>
+                </div>
+        </div>
+        
+        
+        <script src="" async defer></script>
+    </body>
+</html>

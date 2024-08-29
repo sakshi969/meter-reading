@@ -1,0 +1,409 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color:#f1f1f1;
+}
+.header{
+    display: flex;
+    margin: 0px;
+    height: auto;
+    width: auto;
+   background-image: linear-gradient(60deg, darkblue, blue);
+}
+.logoimg{
+    margin:10px;
+    height: 60px;
+}
+.center-logo{
+    display: flex;
+    margin-inline:auto;
+}
+.meterlogo{
+    height: 40px;
+   margin: auto;
+}
+
+.head-text{
+    padding: 10px;
+    margin: auto;
+    font-family: system-ui;
+    font-size: x-large;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px black;
+}
+.headrtext{
+    margin: auto;
+    margin-right: 0;
+    margin-left: 0;
+    color: white;
+    padding: 10px;
+}
+.headrtext a{
+    padding: 10px;
+    font-family: monospace
+}
+
+
+.login-box{
+    display: flex;
+    height: auto;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 100px;
+    box-shadow: 1px 1px 7px 0px #312e2e63;
+    
+}
+.formcont{
+    display: flex;
+    flex-direction: column;
+    margin:20px;
+    font-family: sans-serif;
+}
+.formcont input{
+    padding:10px;
+    margin-top: 10px;
+    width:-webkit-fill-available;
+    border: 1px solid #b5afaf;
+    border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #312e2e63;
+}
+.formsec{
+    margin-bottom:15px;
+}
+
+.formsec label{
+    font-weight: bold;
+   font-family: monospace;
+    color: #464646;
+    letter-spacing: 1px;
+    
+}
+.subtn{
+    background-color: blue;
+    color: white;
+}
+.subtn:hover{
+    background-color: #6c6ce9;
+    cursor: pointer;
+}
+.formfoot{
+    font-size: 12px;
+}
+
+.alerterr{
+    color: rgb(228, 126, 126);
+    font-size: 10px;
+}
+
+.strtcls{
+    display: flex;
+    flex-direction: column;
+}
+.strtcls img{
+    margin: auto;
+    height:150px;
+    margin-top:100px;
+        margin-bottom: 40px;
+    transition: 1s;
+}
+.strtcls button{
+   width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #0000ffb0;
+    color: white;
+    margin: auto;
+    box-shadow:0px 0px 8px 1px #3636398a;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.strtcls button:hover {
+    background-color: blue;
+}
+
+
+.vidsec{
+           display: none;
+            margin: auto;
+			width: 300px;
+			height: 300px;
+			border: 2px solid black;
+			position: relative;
+            border: 2px solid blue;
+            border-radius: 10px;
+		}
+
+		video {
+			width: 100% ;
+			height: 100%;
+			object-fit: cover;
+            border-radius: 10px;
+		}
+
+.capbtn{
+      width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: orangered;
+    color: white;
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 30%;
+    box-shadow:0px 0px 8px 1px #3636398a;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: 1s;
+}
+
+
+.dashboard-card{
+    display: flex;
+    height: 70vh;
+    margin: 6%;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 20px;
+     box-shadow:0px 0px 8px 1px #3636394f;
+    font-family: sans-serif;
+    
+}
+
+.card-left{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    padding: 10px;
+    padding-top: 15px;
+    background-image:linear-gradient(44deg, #1717a9, #4356d8);
+    border-radius: 20px 0px 0px 20px;
+    border-right: 1px solid grey;
+}
+.card-left a{
+    padding: 15px;
+    color:floralwhite;
+    border-bottom: 1px solid white;
+    text-align: center;
+    text-shadow: 1px 1px black;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.card-left a:hover{
+    color: black;
+    text-shadow:none;
+}
+
+
+.right-card{
+    display: flex;
+    transition: 0.6s;
+    height: 100%;
+    width: 0px;
+    border-radius: 0px 20px 20px 0px;
+    overflow: hidden;
+}
+
+.profimgsec{
+    
+    display: flex;
+    height: 100%;
+    width: 40%;
+    border-right: 2px solid #b0a0a0;
+}
+.detailssec{
+     height: 100%;
+    width: 60%;
+    border-radius: 0px 20px 20px 0px;
+    padding: 20px;
+    letter-spacing: 1px;
+}
+.detailssec h5{
+    margin: 10px;
+    color: #736b6b;
+}
+.detailssec a{
+    font-size: 12px;
+    color: #3b3bfddb;
+}
+.profimg{
+    height:150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.profimg img{
+     border-radius: inherit;
+        height:100%;
+        width: 100%;
+        object-fit: cover;
+    background-size:cover;
+    background-position: center;
+}
+.profimg h3{
+    text-align: center;
+    margin: 10px;
+}
+.no1{
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+     width: 75%;
+}
+
+.no2{
+     flex-direction: column;
+}
+.no3{
+    flex-direction: column;
+}
+.no4{
+    flex-direction: column;
+}
+.no5 {
+    flex-direction: column;
+}
+.no5 h2{
+    font-size: 30px;
+    text-align: center;
+}
+
+.transhead{
+    height: 80px;
+    width: 100%;
+    background-image: linear-gradient(44deg, #1717a9, #4356d8);
+    color: white;
+    font-size: 10px;
+    padding: 10px;
+}
+.transhead h2{
+    font-weight: 100;
+    margin: 10px;
+}
+.transhead a{
+    font-weight: 100;
+    margin-left: 10px;
+}
+.tablesec{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+.table {
+    height: 100%;
+    display: table;
+        border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+.table thead{
+        text-align: justify;
+    margin-top: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #545252;
+    font-family: sans-serif;
+}
+.table tbody{
+    color: #747474;
+    font-size: 11px;
+}
+.bilhead{
+    display: flex;
+    margin: 10px;
+    height: 110px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid grey;
+}
+.bilhead img{
+    height: 50px;
+   margin-left: 0px;
+}
+.cmphead{
+    height: 100%;
+}
+.custhead{
+    width: 100%;
+    text-align: end;
+    padding-top: 10px;
+    padding: 20px;
+}
+.billbody{
+    height: 150px;
+    width:97%;
+    margin: 10px;
+    
+    margin-top: 20px;
+}
+.totalcls{
+    display: flex;
+    margin: 10px;
+    text-align: end;
+    margin-right: 20px;
+    justify-content: flex-end;
+}
+.totalcls a{
+    color: blue;
+    font-size: 20px;
+}
+.billpaybtn{
+    float: right;
+    height: 30px;
+    margin:10px;
+    padding: 5px;
+    width: 80px;
+    border: 0px;
+    background-color: green;
+    border-radius: 10px;
+    color: white;
+}
+.billpaybtn:hover{
+    background-color: #28b228;
+    cursor: pointer;
+}
+.additional-info {
+    padding: 20px;
+    width: 100%;
+}
+
+.additional-info h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.info-button {
+    padding: 15px 25px;
+    font-size: 16px;
+    margin: 10px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.info-button:hover {
+    background-color: #0056b3;
+}

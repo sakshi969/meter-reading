@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SAIL SMR (HOME)</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- header start -->
+    <div class="header">
+        <img class="logoimg" src="/static/img/logo/saillogo1.1.png">
+        <div class="center-logo">
+            <img class="meterlogo" src="/static/img/logo/electric-meter%20(3).png">
+            <a class="head-text">Self Meter Reading</a>
+        </div>
+        <div class="headrtext">
+            <a>Faq</a>
+            <a>Help</a>
+        </div>
+    </div>
+    <!-- header end -->
+
+    <div class="strtcls">
+        <img id="scanImage" src="/static/img/logo/electric-meter.png">
+        <button id="but">Scan Now</button>
+    </div>
+
+    
+    
+    
+    <div id="vidblk" class="vidsec">
+		<video id="vid"></video>
+        <button class="capbtn">Capture</button>
+	</div>
+    
+   
+    
+    
+    <script>
+        // Get references to the image and button elements
+        const scanImage = document.getElementById('scanImage');
+        const scanButton = document.getElementById('but');
+        const vidbar = document.getElementById('vidblk');
+
+        // Add click event listener to the button
+        scanButton.addEventListener('click', function() {
+            // Change the height of the image (example: shrink by 50%)
+            scanImage.style.height = '0px'; 
+           scanButton.style.display='none';
+            vidbar.style.display='block';
+        });
+    </script>
+    <script>
+	document.addEventListener("DOMContentLoaded", () => {
+    const scanButton = document.getElementById("but");
+    const video = document.getElementById("vid");
+
+    scanButton.addEventListener("click", () => {
+        // Accessing the user camera and video.
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: { exact: 'environment' }  // Prefer rear camera
+            },
+            audio: false,
+        })
+        .then((stream) => {
+            // Changing the source of video to current stream.
+            video.srcObject = stream;
+            video.addEventListener("loadedmetadata", () => {
+                video.play();
+            });
+        })
+        .catch((error) => {
+            console.warn('Rear camera not available, falling back to any camera:', error);
+            // Retry with any camera
+            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                .then((stream) => {
+                    video.srcObject = stream;
+                    video.addEventListener("loadedmetadata", () => {
+                        video.play();
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error accessing camera:', error);
+                });
+        });
+    });
+});
+
+</script>
+</body>
+</html>

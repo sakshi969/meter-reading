@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Charts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .chart-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+        
+        .chart-container {
+            flex: 1 1 auto;
+            width: 30%;
+            margin: 0 10px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chart-container canvas {
+            max-width: 100%;
+            max-height: 200px; /* Set a max height to prevent oversized pie chart */
+            width: auto;
+            height: auto;
+            display: block;
+        }
+
+        .chart-description {
+            margin-top: 10px;
+            color: #7f8c8d;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal canvas {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Dashboard Charts</h1>
+
+    <div class="chart-row">
+        <div class="chart-container" onclick="showModal('registrationsChart')">
+            <canvas id="registrationsChart"></canvas>
+            <div class="chart-description">
+                <p>Number of user registrations per month.</p>
+            </div>
+        </div>
+
+        <div class="chart-container" onclick="showModal('averageConsumptionChart')">
+            <canvas id="averageConsumptionChart"></canvas>
+            <div class="chart-description">
+                <p>Average consumption per month.</p>
+            </div>
+        </div>
+
+        <div class="chart-container" onclick="showModal('appliedChart')">
+            <canvas id="appliedChart"></canvas>
+            <div class="chart-description">
+                <p>Total number of applied and not applied users.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="chartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <canvas id="modalChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const charts = {
+            registrationsChart: {
+                type: 'bar',
+                data: {
+                    labels: JSON.parse('{{ registration_labels|escapejs }}'),
+                    datasets: [{
+                        label: 'Registrations',
+                        data: JSON.parse('{{ registration_data|escapejs }}'),
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            },
+            averageConsumptionChart: {
+                type: 'line',
+                data: {
+                    labels: JSON.parse('{{ avg_consumption_labels|escapejs }}'),
+                    datasets: [{
+                        label: 'Average Consumption',
+                        data: JSON.parse('{{ avg_consumption_data|escapejs }}'),
+                        backgroundColor: 'rgba(255, 159, 64, 0.5)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            },
+            appliedChart: {
+                type: 'pie',
+                data: {
+                    labels: ['Applied', 'Not Applied'],
+                    datasets: [{
+                        label: 'Users',
+                        data: JSON.parse('{{ applied_data|escapejs }}'),
+                        backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    layout: {
+                        padding: {
+                            bottom: 20, 
+                        }
+                    }
+                }
+            }
+        };
+
+        window.onload = function() {
+            Object.keys(charts).forEach(chartId => {
+                const ctx = document.getElementById(chartId).getContext('2d');
+                const container = document.getElementById(chartId).parentElement;
+                ctx.canvas.width = container.clientWidth;
+                ctx.canvas.height = container.clientHeight;
+                new Chart(ctx, charts[chartId]);
+            });
+        };
+        let modalChartInstance = null;
+
+        function showModal(chartId) {
+            const chartConfig = charts[chartId];
+            const modal = document.getElementById('chartModal');
+            const modalCanvas = document.getElementById('modalChart');
+            const modalCtx = modalCanvas.getContext('2d');
+
+            modal.style.display = "block";
+
+            modalCanvas.width = modalCanvas.parentElement.clientWidth;
+            modalCanvas.height = 400;
+
+            if (modalChartInstance) {
+                modalChartInstance.destroy();
+            }
+        
+            modalChartInstance = new Chart(modalCtx, {
+                type: chartConfig.type,
+                data: chartConfig.data,
+                options: {
+                    ...chartConfig.options,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('chartModal');
+            modal.style.display = "none";
+            if (modalChartInstance) {
+                modalChartInstance.destroy();
+                modalChartInstance = null; 
+            }
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('chartModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SAIL SMR</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+       <!-- header start -->
+       <div class="header">
+        <img class="logoimg" src="/static/img/logo/saillogo1.1.png">
+           <div class="center-logo">
+               <img class="meterlogo" src="/static/img/logo/electric-meter%20(3).png">
+           <a class="head-text">Self Meter Reading</a>
+           </div>
+        <div class="headrtext">
+           <a>Faq</a>
+            <a>Help</a>
+           </div>
+        </div>
+        <!-- header end -->
+      
+        <div class="dashboard-card">
+        
+            <div class="card-left">
+                <a id="btn1">Customer Information</a>
+                <a id="btn2">Bill Information</a>
+                <a id="btn3">Payment Records</a>
+                <a id="btn4">Billing History</a>
+                <a id="btn5">Additional Information</a>
+                
+            </div>
+            <div id="card1" class="right-card no1">
+                 <div class="profimgsec">
+                     <div class="profimg">
+                         <img src="/static/img/logo/profile.png">
+                         <h3>Nisha Rani</h3>
+                     </div>
+               
+                </div>
+                <div class="detailssec">
+                <h5>Age: <a>22</a></h5>
+                <h5>Gender: <a>Female</a></h5>
+                 <h5>Address: <a>Sec 12/D, Bokaro Steel City, Jharkhand</a></h5>
+                 <h5>Email Id: <a>nisharani@gmail.com</a></h5>
+                 <h5>Phone No: <a>9992223331</a></h5>
+                <h5>Type: <a>Sail</a></h5>
+                <h5>No of meters: <a>1</a></h5>
+                <h5>Meter Id: <a>2320498</a></h5>
+                <h5>Meter Type: <a>Digital</a></h5>
+                <h5>Meter Use: <a>Commercial</a></h5>
+                </div> 
+             
+            </div>
+            
+            <div id="card2" class="right-card no2">
+                <div class="bilhead">
+                    <div class="cmphead">
+                <img src="/static/img/logo/saillogo1.12.png">
+                    <h5>Steel Authority Of India Limited</5>
+                    <h6>Bokaro Steel Plant</h6>
+                    <h6>Jharkhand (827001)</h6>
+                    </div>
+                    <div class="custhead">
+                    <h5>Invoice no: <a>4987420</a></h5>
+                    <h6>Date: <a>10/07/24</a></h6>
+                    <h6>Billed To: <a>Nisha Rani</a></h6>
+                    <h6>Mobile no: <a>9992223331</a></h6>
+                    <h6>Email Id: <a>nisharani@gmail.com</a></h6>
+                    <h6>Address: <a>Sec 12/D, Bokaro Steel City, Jharkhand</a></h6>
+                    </div>
+                    </div>
+                <div class="billbody">
+                     <table class="table">
+                     <thead >
+                                <tr>
+                                <th>user_id</th>
+                                <th>Month(From-To)</th>
+                                <th>Meter Id</th>
+                                <th>Prev Read</th>
+                                <th>New Read</th>
+                                <th>Units</th>
+                                <th>Amount</th>
+                            </tr>
+                           
+                         
+                         </thead>
+                      
+                          <tbody>
+                            {% for n in billdata %}
+                                                                  <tr>
+                                    
+                                    <td>{{n.user_id}}</td>
+                                    <td>{{n.month_frm}}/{{n.month_to}}</td>
+                                    <td>{{n.meter_id}}</td>
+                                    <td>{{n.prev_read}}</td>
+                                    <td> {{n.new_read}}</td>
+                                    <td> {{n.units}}</td>
+                                    <td style="color:Green;">{{n.amount}}</td>
+                                </tr>
+                                {% endfor %}
+
+                                
+                                                                       </tbody>
+                     </table>
+                    <hr>
+                    <div class="totalcls">
+                    <h4>Total Dues: <a>{{total_amount}}</a></h4>
+                        </div>
+                    <button class="billpaybtn">Pay Now</button>
+                </div>
+            </div>
+            
+             <div id="card3" class="right-card no3">
+                 <div class="transhead"> 
+                 <h2>Payment Records</h2>
+                     <a>Monthly details of all the transactions are shown below.</a>
+                     <input type="month"   value="2022-11"  style="float: right; color:black;" >
+                 </div>
+                 <div class="tablesec"> 
+                     <table class="table">
+                     <thead >
+                                <tr>
+                                <th>UserID</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Ref ID</th>
+                                <th>Remark</th>
+                                <th>Amount</th>
+                            </tr>
+                           
+                         
+                         </thead>
+                      
+                          <tbody>
+                            {% for p in paymentdet %}
+                                                                  <tr>
+                                    
+                                    <td>{{p.user_id}}</td>
+                                    <td>{{p.date}}</td>
+                                    <td>{{p.time}}</td>
+                                    <td >{{p.refid}}</td>
+                                    <td >{{p.remark}}</td>
+                                    <td style="color:Green;">{{p.amount}}</td>
+                                </tr>
+                                {% endfor %}
+                                                                          
+                                                                       </tbody>
+                     </table>
+                 </div>
+            </div>
+            
+             <div id="card4" class="right-card no4"> 
+                   <div class="transhead"> 
+                 <h2>Billing History</h2>
+                     <a>Monthly details of all the bills are shown below.</a>
+                     <input type="month"   value="2022-11"  style="float: right; color:black;" >
+                 </div>
+                 <div class="tablesec"> 
+                     <table class="table">
+                     <thead >
+                                <tr>
+                                <th>UserId</th>
+                                <th>Date/Time</th>
+                                <th>Billid</th>
+                                <th>Meter ID</th>
+                                <th>Units</th>
+                                <th>Amount</th>
+                                <th>Remark</th>
+                            </tr>
+                           
+                         
+                         </thead>
+                      
+                          <tbody>
+                            {% for n in billdata %}
+                                                                  <tr>
+                                    
+                                    <td>{{n.user_id}}</td>
+                                    <td>{{n.month_frm}}/{{n.month_to}}</td>
+                                    <td>{{n.id}}</td>
+                                    <td>{{n.meter_id}}</td>
+                                    <td>{{n.units}}</td>
+                                    <td style="color:Green;">{{n.amount}}</td>
+                                    <td>{{n.status}}</td>
+
+                                </tr>
+                                {%endfor%}
+                                                                           
+                                                                       </tbody>
+                     </table>
+                 </div>
+            </div>
+            
+             <div id="card5" class="right-card no5">  <div class="transhead"> 
+                <h2>Other Services</h2>
+                </div>
+
+                <div class="additional-info">
+                    <div class="info-section">
+                        <button class="info-button" onclick="applyNewMeter()">Apply for New Meter</button>
+                        <button class="info-button" onclick="requestService()">Request Service</button>
+                        <button class="info-button" onclick="repairMeter()">Repair</button>
+                        <button class="info-button" onclick="newConnection()">New Connection</button>
+                        <button class="info-button" onclick="helpCenter()">Help Center</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+            
+        
+        <script src="" async defer></script>
+        <script>
+            const btn10 = document.getElementById("btn1");
+            const btn20 = document.getElementById("btn2");
+            const btn30 = document.getElementById("btn3");
+            const btn40 = document.getElementById("btn4");
+            const btn50 = document.getElementById("btn5");
+            
+            const card10 = document.getElementById("card1");
+            const card20 = document.getElementById("card2");
+             const card30 = document.getElementById("card3");
+             const card40 = document.getElementById("card4");
+             const card50 = document.getElementById("card5");
+            
+             btn10.addEventListener('click', function() {
+            card10.style.width = '75%'; 
+            card20.style.width = '0px'; 
+            card30.style.width = '0px'; 
+            card40.style.width = '0px'; 
+            card50.style.width = '0px'; 
+          
+        });
+            
+             btn20.addEventListener('click', function() {
+            card10.style.width = '0px'; 
+            card30.style.width = '0px'; 
+            card40.style.width = '0px'; 
+            card50.style.width = '0px'; 
+            card20.style.width = '75%'; 
+          
+        });
+              btn30.addEventListener('click', function() {
+            card10.style.width = '0px'; 
+            card20.style.width = '0px'; 
+            card40.style.width = '0px'; 
+            card50.style.width = '0px'; 
+            card30.style.width = '75%'; 
+          
+        });
+              btn40.addEventListener('click', function() {
+            card10.style.width = '0px'; 
+            card20.style.width = '0px'; 
+            card30.style.width = '0px';  
+            card50.style.width = '0px'; 
+            card40.style.width = '75%';
+          
+        });
+              btn50.addEventListener('click', function() {  
+            card10.style.width = '0px'; 
+            card20.style.width = '0px'; 
+            card30.style.width = '0px'; 
+            card40.style.width = '0px'; 
+            card50.style.width = '75%'; 
+          
+        });
+          
+        </script>
+    </body>
+</html>
